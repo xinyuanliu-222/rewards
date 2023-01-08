@@ -9,3 +9,81 @@ Given a record of every transaction during a three month period, calculate the r
 
 - Spring Boot application
 - RESTFul endpoint
+
+### Request format:
+```json
+
+{
+    "customers": [
+        {
+            "id": 1,
+            "name": "Anna",
+            "cost": 100.0,
+            "month": "Jan"
+        },
+        {
+            "id": 2,
+            "name": "Anna",
+            "cost": 120,
+            "month": "Feb"
+        },
+        {
+            "id": 1,
+            "name": "Anna",
+            "cost": 260,
+            "month": "Mar"
+        }
+    ]
+}
+
+```
+
+
+### Response format:
+
+#### Sucess response
+```json
+{
+    "returnCode": 200,
+    "returnMessage": "Success",
+    "response": [
+        {
+            "id": 1,
+            "name": "Anna",
+            "totalRewards": 420.0,
+            "rewardsList": [
+                {
+                    "month": "Jan",
+                    "rewards": 50.0
+                },
+                {
+                    "month": "Mar",
+                    "rewards": 370.0
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Anna",
+            "totalRewards": 90.0,
+            "rewardsList": [
+                {
+                    "month": "Feb",
+                    "rewards": 90.0
+                }
+            ]
+        }
+    ]
+}
+```
+
+#### Bad request:
+```json
+
+{
+    "returnCode": 2,
+    "returnMessage": "Invalid month",
+    "response": null
+}
+
+```
